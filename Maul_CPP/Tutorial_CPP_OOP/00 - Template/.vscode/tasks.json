@@ -11,13 +11,13 @@
                 "-std=c++17",
                 ".\\src\\*.cpp",
                 "-o",
-                ".\\bin\\Main.exe",
+                ".\\bin\\${fileBasenameNoExtension}.exe",
             ]
         },
         {
             "label": "run",
             "type": "shell",
-            "command": ".\\bin\\Main",
+            "command": ".\\bin\\${fileBasenameNoExtension}",
             "dependsOn": ["Compile C++"],
             "group": {
                 "kind": "build",
