@@ -3,40 +3,50 @@
 
 using namespace std;
 
-//  bikin class disini (selalu sebelum int main)
+// class tanpa constructor
+class Polos {
+    public:
+        string dataString;
+        int dataInteger;
+};
+
+// class dengan constructor = dimana suatu method atau fungsi yang dipanggil pertama kali saat object dibuat
 class Mahasiswa{
-    //public : bisa diakses siapapun diluar class ini
-    //private : bisa diakses didalam class ini saja 
-    //protected : cuma bisa diakses class yang inherited dari class ini
     public:
         string nama;
         string NIM;
         string jurusan;
         double IPK;
-};
-// setiap kali membuat statement selalu diakhiri dengan ;
 
+        // ini adalah constructor
+        // Mahasiswa() {
+        //     cout << "ini adalah constructor" << endl;
+        // }
+
+        // constructor dengan parameter
+        Mahasiswa(string inputNama, string inputNIM, string inputJurusan, double inputIPK) {
+            Mahasiswa::nama = inputNama; // Mahasiswa:: disebut namespace sesuai dengan nama class : mengambil variabel nama didalam class Mahasiswa
+            Mahasiswa::NIM = inputNIM;
+            Mahasiswa::jurusan = inputJurusan;
+            Mahasiswa::IPK = inputIPK;
+
+            cout << "nama mahasiswa    : " << Mahasiswa::nama << endl;
+            cout << "NIM mahasiswa     : " << Mahasiswa::NIM << endl;
+            cout << "jurusan mahasiswa : " << Mahasiswa::jurusan << endl;
+            cout << "IPK mahasiswa     : " << Mahasiswa::IPK << "\n" << endl;
+        }
+};
 
 int main(int argc, char const *argv[])
 {
-    Mahasiswa data1;
-    data1.nama = "ucup";
-    data1.NIM = "13305041";
-    data1.jurusan = "teknik memasak";
-    data1.IPK = 10;
-    Mahasiswa data2;
-    data2.nama = "asep";
-    data2.NIM = "13406001";
-    data2.jurusan = "teknik menjait";
-    data2.IPK = 0.5;
-    cout << "nama dari data1 : " << data1.nama << endl;
-    cout << "NIM dari data1  : " << data1.NIM << endl;
-    cout << "jurusan dari data1 : " << data1.jurusan << endl;
-    cout << "IPK dari data1 : " << data1.IPK << endl;
-    cout << "\n" << endl;
-    cout << "nama dari data2 : " << data2.nama << endl;
-    cout << "NIM dari data2  : " << data2.NIM << endl;
-    cout << "jurusan dari data2 : " << data2.jurusan << endl;
-    cout << "IPK dari data2 : " << data2.IPK << endl;
+    Mahasiswa mahasiswa1 = Mahasiswa("ucup", "13305041", "teknik pertanian", 4.0);
+    Mahasiswa mahasiswa2 = Mahasiswa("asep", "13230341", "teknik menjait", 3.0);
+    // Polos objectPolos;
+    // objectPolos.dataString = "polos";
+    // objectPolos.dataInteger = 0;
+
+    // cout << objectPolos.dataString << endl;
+    // cout << objectPolos.dataInteger << endl;
+
     return 0;
 }
