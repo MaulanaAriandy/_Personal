@@ -3,50 +3,62 @@
 
 using namespace std;
 
-// class tanpa constructor
-class Polos {
-    public:
-        string dataString;
-        int dataInteger;
-};
-
-// class dengan constructor = dimana suatu method atau fungsi yang dipanggil pertama kali saat object dibuat
 class Mahasiswa{
     public:
-        string nama;
-        string NIM;
-        string jurusan;
+        string nama; // data
         double IPK;
 
-        // ini adalah constructor
-        // Mahasiswa() {
-        //     cout << "ini adalah constructor" << endl;
-        // }
+        // ini constructor
+        Mahasiswa(string nama, double IPK){
+            Mahasiswa::nama = nama;
+            Mahasiswa::IPK = IPK;
+        }
+        
+        // fungsi
+        // method tanpa parameter dan tanpa return 
+        void tampilkanData(){
+            cout << "Nama saya " << nama << ", IPK saya adalah " << IPK << endl;
+            // cout << IPK << endl;
+        }
 
-        // constructor dengan parameter
-        Mahasiswa(string inputNama, string inputNIM, string inputJurusan, double inputIPK) {
-            Mahasiswa::nama = inputNama; // Mahasiswa:: disebut namespace sesuai dengan nama class : mengambil variabel nama didalam class Mahasiswa
-            Mahasiswa::NIM = inputNIM;
-            Mahasiswa::jurusan = inputJurusan;
-            Mahasiswa::IPK = inputIPK;
+        // method dengan parameter dan tanpa return
+        void ubahNama(const char* namaBaru){ // bisa pakai string namaBaru tetapi, lebih cepat char*
+            //menggunakan banyak memory
+            Mahasiswa::nama = namaBaru;
+        }
 
-            cout << "nama mahasiswa    : " << Mahasiswa::nama << endl;
-            cout << "NIM mahasiswa     : " << Mahasiswa::NIM << endl;
-            cout << "jurusan mahasiswa : " << Mahasiswa::jurusan << endl;
-            cout << "IPK mahasiswa     : " << Mahasiswa::IPK << "\n" << endl;
+        // method tanpa parameter dan dengan return
+        string getNama(){
+            return Mahasiswa::nama;
+        }
+
+        double getIPK(){
+            return IPK;
+        }
+
+        // method dengan parameter dan dengan return
+        double katrolIPK(const double &tambahanNilai){
+            // kenapa menggunakan const, karena untuk memastikan value tambahanNilai 
+            // tidak berubah sebagai reference (reference harus constant) 
+            // berlaku juga untuk variable namaBaru yang diatas
+            return Mahasiswa::IPK + tambahanNilai;
         }
 };
 
+
 int main(int argc, char const *argv[])
 {
-    Mahasiswa mahasiswa1 = Mahasiswa("ucup", "13305041", "teknik pertanian", 4.0);
-    Mahasiswa mahasiswa2 = Mahasiswa("asep", "13230341", "teknik menjait", 3.0);
-    // Polos objectPolos;
-    // objectPolos.dataString = "polos";
-    // objectPolos.dataInteger = 0;
+    Mahasiswa mahasiswa1 = Mahasiswa("ucup",2.5);
+    Mahasiswa mahasiswa2 = Mahasiswa("asep",4.0);
+    mahasiswa1.tampilkanData();
+    mahasiswa2.tampilkanData();
+    
+    mahasiswa1.ubahNama("mario");
+    mahasiswa1.tampilkanData();
 
-    // cout << objectPolos.dataString << endl;
-    // cout << objectPolos.dataInteger << endl;
-
+    string dataNama = mahasiswa1.getNama();
+    cout << "dataNama = " << dataNama << endl;
+    cout << "dataIPK = " << mahasiswa1.getIPK() << endl;
+    cout << "nilai katrol = " << mahasiswa2.katrolIPK(-2.23) << endl;
     return 0;
 }
